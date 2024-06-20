@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="m-4">
+    <h1 class="font-bold text-4xl text-violet-500">Chat</h1>
+    <div class="border h-[700px] w-[30%] mt-3" id="text"></div>
+    <div class="flex gap-5 m-1">
+      <input
+        type="text"
+        class="p-2 w-[30%]"
+        id="message"
+        placeholder="write..."
+      />
+      <button id="invio">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6 text-violet-500"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+          />
+        </svg>
+      </button>
+    </div>
+  </body>
+  <script>
+    let inputto = document.getElementById("message");
+    let showMyMessave = document.getElementById("text");
+    let invio = document.getElementById("invio");
+
+    const result = () => {
+      if (inputto.value.trim() == "") {
+        return;
+      }
+
+      let data = new Date();
+      let ore = data.getHours().toString().padStart(2, "0");
+      let minute = data.getMinutes().toString().padStart(2, "0");
+
+      showMyMessave.innerHTML += `
+      <ul class="flex justify-between px-3 py-2">
+        <div>
+          <div class="font-bold">Carlo</div>
+        <div class="text-2xl">${inputto.value}</div>
+        </div>
+        <div class="text-xs text-gray-400">${ore}:${minute}</div>
+      </ul>`;
+      inputto.value = "";
+    };
+    invio.addEventListener("click", result);
+  </script>
+</html>
